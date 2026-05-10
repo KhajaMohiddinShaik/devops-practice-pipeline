@@ -9,4 +9,4 @@ def test_root():
     assert response.json() == {"message": "Hello from CI/CD"}
 #python test file written with pytest
 #Automated CI till Docker Registry
-#Jenkins is now inside WSL
+#Jenkins is now in WSL
