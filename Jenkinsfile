@@ -89,7 +89,8 @@ pipeline {
         			-p 8000:8000 \
         			app:${BUILD_NUMBER}
         		'''
-    		}
+    			}
+		}
 	}
 
     post {
