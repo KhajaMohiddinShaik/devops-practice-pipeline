@@ -31,19 +31,9 @@ pipeline {
                 '''
             }
         }
-	stage('Python Debug') {
-		steps {
-			sh 'which python3'
-			sh 'which pip3'
-			sh 'pip3 --version'
-			sh 'pip3 list | grep flake8'
-			sh 'which flake8'
-		}
-	}
-
 	stage('Lint') {
 		steps {
-			sh 'python3 -m flake8 .'
+			sh './venv/bin/python -m flake8 .'
 		}
 	}
 
