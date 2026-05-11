@@ -33,7 +33,7 @@ pipeline {
         }
 	stage('Lint') {
 		steps {
-			sh './venv/bin/python -m flake8 .'
+			sh './venv/bin/python -m flake8 . exclude=venv,.venv,__pycache__,build,dist'
 		}
 	}
 
