@@ -28,7 +28,7 @@ pipeline {
 
                 pip install --upgrade pip
                 pip install -r requirements.txt
-		black . --exclude=venv,.venv,__pycahce__,build,dist
+		black . --extend-exclude "venv|.venv|__pycache__|build|dist"
                 '''
             }
         }
