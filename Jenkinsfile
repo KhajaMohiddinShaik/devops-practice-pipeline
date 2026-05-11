@@ -32,6 +32,12 @@ pipeline {
             }
         }
 
+	stage('Lint') {
+		steps {
+			sh 'flake8 .'
+		}
+	}
+
         stage('Test') {
             steps {
                 sh '''
