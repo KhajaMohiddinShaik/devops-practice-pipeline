@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "khajamohiddin11/practice-repo:v1"
+        IMAGE_NAME = "khajamohiddin11/practice-repo:${BUILD_NUMBER}"
     }
 
     stages {
@@ -80,6 +80,19 @@ pipeline {
         }
     }
 
+	stage('Deploy Container') {
+		steps {
+			sh '''
+				docker rm -f fastapi-container || true
+
+        			docker run -d \
+        			--name fastapi-container \
+        			-p 8000:8000 \
+        			app:${BUILD_NUMBER}
+        		'''
+    		}
+	}
+
     post {
         success {
             echo 'Pipeline completed successfully 🚀'
@@ -88,5 +101,8 @@ pipeline {
         failure {
             echo 'Pipeline failed ❌'
         }
+	always {
+		sh 'docker image prune -f'	
+	}
     }
 }
