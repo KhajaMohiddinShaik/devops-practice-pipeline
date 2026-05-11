@@ -34,7 +34,7 @@ pipeline {
 
 	stage('Lint') {
 		steps {
-			sh 'flake8 .'
+			sh 'python3 -m flake8 .'
 		}
 	}
 
