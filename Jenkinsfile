@@ -34,7 +34,7 @@ pipeline {
 	stage('Formatting') {
 		steps {
 			sh '''
-				.venv/bin/python -m black . --extend-exclude "venv|.venv|__pycache__|build|dist"
+				./venv/bin/python -m black . --extend-exclude "venv|.venv|__pycache__|build|dist"
 				'''
 		}
 	}
