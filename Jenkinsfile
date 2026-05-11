@@ -38,6 +38,8 @@ pipeline {
 				'''
 		}
 	}
+	stage('Parallel Checks') {
+	parallel {
 	stage('Lint') {
 		steps {
 			sh './venv/bin/python -m flake8 .'
@@ -53,6 +55,8 @@ pipeline {
                 '''
             }
         }
+	}
+	}
 
         stage('Docker Build') {
             steps {
