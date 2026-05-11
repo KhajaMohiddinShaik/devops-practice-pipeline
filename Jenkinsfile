@@ -28,10 +28,16 @@ pipeline {
 
                 pip install --upgrade pip
                 pip install -r requirements.txt
-		black . --extend-exclude "venv|.venv|__pycache__|build|dist"
                 '''
             }
         }
+	stage('Formatting') {
+		steps {
+			sh '''
+				.venv/bin/python -m black . --extend-exclude "venv|.venv|__pycache__|build|dist"
+				'''
+		}
+	}
 	stage('Lint') {
 		steps {
 			sh './venv/bin/python -m flake8 .'
