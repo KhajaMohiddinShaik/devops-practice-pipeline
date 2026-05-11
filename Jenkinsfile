@@ -87,7 +87,7 @@ pipeline {
         			docker run -d \
         			--name fastapi-container \
         			-p 8000:8000 \
-        			app:${BUILD_NUMBER}
+        			${IMAGE_NAME}
         		'''
     			}
 		}
