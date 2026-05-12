@@ -95,13 +95,13 @@ pipeline {
 
 			sshagent (credentials: ['ec2-ssh-key']) {
 				sh '''
-				ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} "
-				echo '${DOCKER _PASS}' | docker login -u '${DOCKER_USER}' --password-stdin
+				ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} '
+				echo "${DOCKER _PASS}" | docker login -u "${DOCKER_USER}" --password-stdin
 				docker pull ${IMAGE_NAME}
 				docker stop fastapi-app || true
 				docker rm fastapi-app || true
 				docker run -d --name fastapi-app -p 8000:8000 ${IMAGE_NAME}
-				"
+				'
 				'''
 				}
 
