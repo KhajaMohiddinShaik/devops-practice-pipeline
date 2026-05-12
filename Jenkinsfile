@@ -105,6 +105,7 @@ pipeline {
     post {
         success {
             echo 'Pipeline completed successfully 🚀'
+	    echo 'Suucessfully deployed to EC2'
         }
 
         failure {
