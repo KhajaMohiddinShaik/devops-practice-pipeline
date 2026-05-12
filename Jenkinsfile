@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "khajamohiddin11/practice-repo:${BUILD_NUMBER}"
-	EC2_IP = "ec2-13-201-57-124.ap-south-1.compute.amazonaws.com"
+	EC2_IP = "ec2-13-126-73-140.ap-south-1.compute.amazonaws.com"
     }
 
     stages {
