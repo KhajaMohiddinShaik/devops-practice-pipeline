@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "khajamohiddin11/practice-repo:${BUILD_NUMBER}"
+	EC2_IP = "ec2-13-201-57-124.ap-south-1.compute.amazonaws.com"
     }
 
     stages {
@@ -83,17 +84,21 @@ pipeline {
             }
         }
 
-	stage('Deploy Container') {
+	stage('Deploy to EC2') {
 		steps {
-			sh '''
-				docker rm -f fastapi-container || true
 
-        			docker run -d \
-        			--name fastapi-container \
-        			-p 8000:8000 \
-        			${IMAGE_NAME}
-        		'''
-    			}
+			sshagent (credentials: ['ec2-ssh-key']) {
+				sh '''
+				ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} "
+				docker pull ${IMAGE_NAME}
+				docker stop fastapi-app || true
+				docker rm fastapi-app || true
+				docker run -d --name fastapi-app -p 8000:8000 ${IMAGE_NAME}
+				"
+				'''
+				}
+
+			}
 		}
 	}
 
