@@ -6,6 +6,7 @@ pipeline {
 	EC2_IP = "ec2-13-126-73-140.ap-south-1.compute.amazonaws.com"
     }
 
+
     stages {
 
         stage('Checkout') {
